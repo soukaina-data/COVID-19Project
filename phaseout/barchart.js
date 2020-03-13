@@ -41,3 +41,29 @@ chart = {
   .map(([date, data]) => [new Date(date), data])
   .sort(([a], [b]) => d3.ascending(a, b))
 
+  function rank(value) {
+    const data = Array.from(names, name => ({name, value: value(name)}));
+    data.sort((a, b) => d3.descending(a.value, b.value));
+    for (let i = 0; i < data.length; ++i) data[i].rank = Math.min(n, i);
+    return data;
+  }
+
+  rank(name => datevalues[0][1].get(name))
+
+  k = 10
+
+  keyframes = {
+    const keyframes = [];
+    let ka, a, kb, b;
+    for ([[ka, a], [kb, b]] of d3.pairs(datevalues)) {
+      for (let i = 0; i < k; ++i) {
+        const t = i / k;
+        keyframes.push([
+          new Date(ka * (1 - t) + kb * t),
+          rank(name => (a.get(name) || 0) * (1 - t) + (b.get(name) || 0) * t)
+        ]);
+      }
+    }
+    keyframes.push([new Date(kb), rank(name => b.get(name) || 0)]);
+    return keyframes;
+  }

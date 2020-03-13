@@ -17,7 +17,7 @@ d3.csv('Data.csv', function(data){
         d.date = new Date(year, month, day);
         d.confirmed = +d.confirmed;
         d.recovered = +d.recovered;
-        d.deaths = +d.deaths
+        d.deaths = +d.deaths;
     })
 
     // console.log(data)
@@ -59,12 +59,18 @@ d3.csv('Data.csv', function(data){
     }
 
     var countries =[];
-    var country_recovered=[];
+    var country_confirmed=[];
+    var country_deaths=[];
+    var country_mortality =[];
 
     for(i = 0; i < country_sum.length; i++){
         // console.log(daily_sum[i].value.sum_confirmed)
         countries.push(country_sum[i].key)
-        country_recovered.push(country_sum[i].value.sum_recovered)
+        var confirmed = country_sum[i].value.sum_confirmed
+        var deaths = country_sum[i].value.sum_deaths
+        country_confirmed.push(confirmed)
+        country_deaths.push(deaths)
+        country_mortality.push(deaths/confirmed)
     }
     //console.log(dates)
     var daily_confirmed_plot = dates.map((e,i)=>[e,daily_confirmed[i]])
@@ -73,33 +79,66 @@ d3.csv('Data.csv', function(data){
     var daily_deaths_plot=dates.map((e,i)=>[e,daily_deaths[i]])
     var daily_recovered_plot=dates.map((e,i)=>[e,daily_recovered[i]])
     
-    new Chart(document.getElementById("doughnut-chart"), {
-        type: 'doughnut',
-        data: {
-            labels: countries,
-            datasets: [{
-                data: country_recovered
-            }],
-            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
-        },
-        // data: {
-        //   labels: countries,
-        //   datasets: [
-        //     {
-        //       label: "Recovered",
-        //       //backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-        //       data: country_recovered
-        //     }
-        //   ]
-        // },
-        options: {
-          title: {
-            display: true,
-            text: 'Recovered by Country'
-          }
-        }
-    });
+    // var data = [{
+    //     values: country_confirmed,
+    //     labels: countries,
+    //     type: 'pie',
+    //   }];
+    var data = [{
+        type: 'bar',
+        x: country_mortality,
+        y: countries,
+        orientation: 'h'
+      }];
 
+    // var layout = {
+    //     title: 'Number of Graphs Made this Week',
+    //     font:{
+    //       family: 'Raleway, sans-serif'
+    //     },
+    //     showlegend: false,
+    //     xaxis: {
+    //       tickangle: -45
+    //     },
+    //     yaxis: {
+    //       zeroline: false,
+    //       gridwidth: 2
+    //     },
+    //     bargap :0.05
+    //   };
+      Plotly.newPlot('plot', data);
+
+    // new Chart(document.getElementById("doughnut-chart"), {
+    //     type: 'doughnut',
+    //     data: {
+    //         labels: countries,
+    //         datasets: [{
+    //             data: country_recovered 
+    //         }],
+    //         //backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
+    //     },
+    //     // data: {
+    //     //   labels: countries,
+    //     //   datasets: [
+    //     //     {
+    //     //       label: "Recovered",
+    //     //       //backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+    //     //       data: country_recovered
+    //     //     }
+    //     //   ]
+    //     // },
+    //     options: {
+    //       title: {
+    //         display: true,
+    //         text: 'Recovered by Country'
+    //       },
+    //       plugins: {
+    //         colorschemes: {
+    //           scheme: 'brewer.Greens9:'
+    //         }
+    //       }	
+    //     }
+    // });
     Highcharts.chart('container', {
 
         title: {
@@ -209,4 +248,4 @@ d3.csv('Data.csv', function(data){
 //   title: " Cases by country",
 // };
 
-// Plotly.newPlot("plot", data, layout);
+// Plotly.newPlot("plot", data, layout)

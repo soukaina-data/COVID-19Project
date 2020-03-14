@@ -90,7 +90,9 @@ d3.csv('Data.csv', function(data){
       }];
 
     var layout = {
-        title: 'Mortality Rata by Country'
+        title: 'Mortality Rata by Country',
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)'
       };
       
     // var layout = {
@@ -134,7 +136,7 @@ d3.csv('Data.csv', function(data){
     //         display: true,
     //         text: 'Recovered by Country'
     //       },
-    //       plugins: {
+    //       plugins: { 
     //         colorschemes: {
     //           scheme: 'brewer.Greens9:'
     //         }
@@ -150,6 +152,10 @@ d3.csv('Data.csv', function(data){
         // subtitle: {
         //     text: 'Source: thesolarfoundation.com'
         // },
+        chart: {
+            backgroundColor: '#bebebe',
+            plotBackgroundColor: '#bebebe'
+          },
     
         yAxis: {
             title: {
@@ -172,8 +178,8 @@ d3.csv('Data.csv', function(data){
             //},
             title: {
                 text: 'Date'
-            }
-            //categories: dates
+            },
+            categories: dates
         },
     
         legend: {

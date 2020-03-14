@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>COVID-19 Global Dieasae by JESJ</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="mycss.css">
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+        integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+        crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+        integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+        crossorigin=""></script>
+      </head>
+
+      <div class="container">
+      <div class="header">
+        <h1>COVID-19 Global Disease by JESJ</h1>
+      </div>
+    </div>
+
+      <body>
+        
+        
+        <div class="container">
+
+          
+
+          <div class="row">
+            <div class="col-md-12 ">
+              <!-- <h1>COVID-19 Global Dieasae by JESJ</h1> -->
+              <style>
+              body {background:rgb(190, 190, 190)}
+              h1 {color:white}
+              h5 {color:white}
+              </style>
+            </div>
+          </div>
+
+          <!-- <div class="box_header">
+
+          </div>  -->
+          <div class="row">
+
+            <div class="col-md-3">
+              <div class="search">
+                
+                <h5>Search:</h5>
+                <select id="Country" onchange="countryChange(this.value)">
+                  <!-- <option value = "Italy">Italy</option>
+                  <option value = "US">US</option>
+                  <option value = "Mainland China">Mainland China</option> -->
+                </select>
+
+                <div class="infogram-embed" data-id="4d165a34-9e5e-4a93-9d99-541c3b5898a6" data-type="interactive" data-title="Pictoral Chart"></div><script>!function(e,i,n,s){var t="InfogramEmbeds",d=e.getElementsByTagName("script")[0];if(window[t]&&window[t].initialized)window[t].process&&window[t].process();else if(!e.getElementById(n)){var o=e.createElement("script");o.async=1,o.id=n,o.src="https://e.infogram.com/js/dist/embed-loader-min.js",d.parentNode.insertBefore(o,d)}}(document,0,"infogram-async");</script><div style="padding:8px 0;font-family:Arial!important;font-size:13px!important;line-height:15px!important;text-align:center;border-top:1px solid #dadada;margin:0 30px"><a href="https://infogram.com/4d165a34-9e5e-4a93-9d99-541c3b5898a6" style="color:#989898!important;text-decoration:none!important;" target="_blank">Pictoral Chart</a><br><a href="https://infogram.com" style="color:#989898!important;text-decoration:none!important;" target="_blank" rel="nofollow">Infogram</a></div>
+
+                  <div class="video">
+                    <!-- <a href="https://youtu.be/c09m5f7Gnic?t=1164"> -->
+                      <iframe height="200" width="250" src="https://www.youtube.com/embed/c09m5f7Gnic?start=1163" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      <!-- <img src="https://i.ytimg.com/vi/c09m5f7Gnic/hqdefault.jpg" height="200px" /></a> -->
+                  </div>
+                </div>            
+              
+            </div>
+            
+            
+
+            <div class="col-md-9">
+                    <h5>Map</h5>
+                    <div id="map"></div>
+                    <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+            </div>
+          </div>
+
+          <div class="row">
+
+              <div class="chart">
+                <div class="col-md-6 ">
+                <h5>Line:</h5>
+                <script src="https://code.highcharts.com/highcharts.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+                <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+                <script src="charts.js"></script>
+                <!-- <div id="plot"></div> -->
+                <div id="container"></div>
+            </div>
+          </div>
+         
+          <div class="chart_2">
+              <div class="col-md-6 ">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+                <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+                <script src="charts.js"></script>
+                <div id="plot"></div>
+                <div id="container"></div>
+              </div>
+          </div>
+        </div>
+     
+     
+<!-- 
+        <div class="col-md-6 ">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+                <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+                <script src="charts.js"></script>
+                <div id="plot"></div>
+                <div id="container"></div> -->
+
+            
+
+        </div>
+
+            <!-- <div class="row">
+                <h5>Bar Chart:</h5>
+                
+            </div> -->
+          
+            
+          
+    
+      <script type="text/javascript" src="logic.js"></script>
+
+        
+      </body>
+      
+      
+
+      </html>

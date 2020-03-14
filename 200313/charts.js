@@ -1,5 +1,3 @@
-//https://observablehq.com/@d3/bar-chart-race
-
 // data = d3.csvParse(await FileAttachment("Project COVID Data Clean.csv").text(), d3.autoType)
 
 d3.csv('Data.csv', function(data){
@@ -86,11 +84,15 @@ d3.csv('Data.csv', function(data){
     //   }];
     var data = [{
         type: 'bar',
-        x: country_mortality,
+        x: country_mortality.sort(),
         y: countries,
-        orientation: 'h'
+        orientation: 'h',
       }];
 
+    var layout = {
+        title: 'Mortality Rata by Country'
+      };
+      
     // var layout = {
     //     title: 'Number of Graphs Made this Week',
     //     font:{
@@ -106,8 +108,8 @@ d3.csv('Data.csv', function(data){
     //     },
     //     bargap :0.05
     //   };
-      Plotly.newPlot('plot', data);
-
+      //Plotly.newPlot('plot', data);
+      Plotly.plot('plot', {data: data,layout: layout});
     // new Chart(document.getElementById("doughnut-chart"), {
     //     type: 'doughnut',
     //     data: {
